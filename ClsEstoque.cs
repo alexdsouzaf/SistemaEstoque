@@ -31,11 +31,12 @@ namespace Facul
                     conectado.Close();
                 }
                 //return leitor;
+                MessageBox.Show("Registro alterado com sucesso!");
             }
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                throw;
+                //throw;
             }
         }
 
@@ -83,6 +84,7 @@ namespace Facul
                     conectado.Close();
 
                 }
+                MessageBox.Show("Registro alterado com sucesso!");
             }
             catch (Exception)
             {
@@ -108,7 +110,8 @@ namespace Facul
 
                     conectado.Close();
                 }
-                
+                MessageBox.Show("Registro gravado com sucesso!");
+
             }
             catch (Exception)
             {

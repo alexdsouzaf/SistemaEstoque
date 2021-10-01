@@ -28,11 +28,12 @@ namespace Facul
 
                     conectado.Close();
                 }
+                MessageBox.Show("Registro alterado com sucesso!");
             }
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                throw;
+                //throw;
             }
             //throw new NotImplementedException();
         }
@@ -63,7 +64,7 @@ namespace Facul
                 MessageBox.Show("Algo deu errado");
                 throw;
             }
-            //throw new NotImplementedException();
+            //throw new notimplementedexception();
         }
 
         public void deletar(string pWhere)
@@ -81,11 +82,12 @@ namespace Facul
 
                     conectado.Close();
                 }
+                MessageBox.Show("Registro removido com sucesso!");
             }
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                throw;
+                //throw;
             }
             //throw new NotImplementedException();
         }
@@ -105,12 +107,13 @@ namespace Facul
 
                     conectado.Close();
                 }
+                MessageBox.Show("Registro alterado com sucesso!");
 
             }
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                throw;
+                //throw;
             }
             //throw new NotImplementedException();
         }

@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,10 +30,10 @@ namespace Facul
             while (oRetorno.Read())
             {
                 DataGridViewRow linha = (DataGridViewRow)grdProdutos.Rows[0].Clone();
-                linha.Cells[0].Value = oRetorno.GetInt16(0);
+                linha.Cells[0].Value = oRetorno.GetInt32(0);
                 linha.Cells[1].Value = oRetorno.GetString(1);
                 linha.Cells[2].Value = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
-                linha.Cells[3].Value = oRetorno.GetInt16(3);
+                linha.Cells[3].Value = oRetorno.GetInt32(3);
                 grdProdutos.Rows.Add(linha);
             }
 
@@ -41,17 +42,38 @@ namespace Facul
         private void btnGravar_Click(object sender, EventArgs e)
         {
 
-            oProduto.gravar(txtNome.Text, txtObs.Text, 0, Convert.ToInt32(txtQuant.Text));
+            if (ValidaCampos().ToString() != string.Empty)
+            {
+                oProduto.gravar(txtNome.Text, txtObs.Text, 0, Convert.ToInt32(txtQuant.Text));
+                LimparCampos();
+            }
+            else
+                MessageBox.Show("Não foi possível gravar o produto por um ou mais motivos:\r\n" + ValidaCampos().ToString());
+
         }
 
         private void btnDeletar_Click(object sender, EventArgs e)
         {
             oProduto.deletar(txtId.Text);
+            LimparCampos();
+            tabControl1.SelectedTab = tabPage1;
+            btnAlterar.Visible = false;
+            btnGravar.Visible = true;
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            oProduto.alterar(txtNome.Text, txtObs.Text, txtId.Text, txtQuant.Text, string.Empty); //tem que passar a quantidade
+            if (ValidaCampos().ToString() != string.Empty)
+            {
+                oProduto.alterar(txtNome.Text, txtObs.Text, txtId.Text, txtQuant.Text, string.Empty);
+                LimparCampos();
+                tabControl1.SelectedTab = tabPage1;
+                btnAlterar.Visible = false;
+                btnGravar.Visible = true;
+            }
+            else
+                MessageBox.Show("Não foi possível gravar o produto por um ou mais motivos:\r\n" + ValidaCampos().ToString());
+
         }
 
         private void LimparCampos()
@@ -73,7 +95,7 @@ namespace Facul
                 while (oRetorno.Read())
                 {
 
-                    txtId.Text = oRetorno.GetInt16(0).ToString();
+                    txtId.Text = oRetorno.GetInt32(0).ToString();
                     txtNome.Text = oRetorno.GetString(1);
                     txtObs.Text = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
                     txtQuant.Text = oRetorno.GetInt32(3).ToString();
@@ -84,6 +106,40 @@ namespace Facul
                 btnGravar.Visible = false;
                 tabControl1.SelectedTab = tbpCadastro;
             }
+        }
+
+        private bool MaskNum(string pQuant)
+        {
+            Regex num = new Regex("[0-9]");
+            if (!num.IsMatch(pQuant))
+                return false;
+            else            
+                return true;
+        }
+
+        private bool MaskText(string pNome)
+        {
+            Regex num = new Regex("[A-Z][a-z]");
+            if (!num.IsMatch(pNome))
+                return false;
+            else
+                return true;
+        }
+
+        private StringBuilder ValidaCampos()
+        {
+            StringBuilder sbMensagem = new StringBuilder();
+
+            if (MaskNum(txtQuant.Text))
+                sbMensagem.AppendLine(" - Campo quantidade deve conter apenas números.");
+
+            if (Convert.ToInt32(txtQuant.Text) < 0)
+                sbMensagem.AppendLine(" - Campo quantidade não pode ter valor de inclusão negativo.");
+
+            if (MaskText(txtNome.Text))
+                sbMensagem.AppendLine(" - Campo nome deve conter apenas letras.");
+
+            return sbMensagem;
         }
     }
 }

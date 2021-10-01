@@ -43,6 +43,7 @@ namespace Facul
             this.btnPesquisar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbpCadastro = new System.Windows.Forms.TabPage();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnDeletar = new System.Windows.Forms.Button();
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@ namespace Facul
             ((System.ComponentModel.ISupportInitialize)(this.grdProdutos)).BeginInit();
             this.toolStrip2.SuspendLayout();
             this.tbpCadastro.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.pnlComandos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,9 +71,9 @@ namespace Facul
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 178);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 240);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(568, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(584, 22);
             this.statusStrip1.TabIndex = 1;
             // 
             // lblStatus
@@ -88,7 +90,7 @@ namespace Facul
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(568, 178);
+            this.tabControl1.Size = new System.Drawing.Size(584, 240);
             this.tabControl1.TabIndex = 10;
             // 
             // tabPage1
@@ -97,7 +99,7 @@ namespace Facul
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(560, 150);
+            this.tabPage1.Size = new System.Drawing.Size(576, 212);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Consulta";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -109,7 +111,7 @@ namespace Facul
             this.pnlTabela.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTabela.Location = new System.Drawing.Point(3, 3);
             this.pnlTabela.Name = "pnlTabela";
-            this.pnlTabela.Size = new System.Drawing.Size(554, 144);
+            this.pnlTabela.Size = new System.Drawing.Size(570, 206);
             this.pnlTabela.TabIndex = 5;
             // 
             // grdProdutos
@@ -127,7 +129,7 @@ namespace Facul
             this.grdProdutos.Name = "grdProdutos";
             this.grdProdutos.ReadOnly = true;
             this.grdProdutos.RowTemplate.Height = 25;
-            this.grdProdutos.Size = new System.Drawing.Size(554, 119);
+            this.grdProdutos.Size = new System.Drawing.Size(570, 181);
             this.grdProdutos.TabIndex = 0;
             this.grdProdutos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdProdutos_CellContentClick);
             // 
@@ -138,6 +140,7 @@ namespace Facul
             this.ID.ReadOnly = true;
             this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ID.Width = 50;
             // 
             // clmProduto
             // 
@@ -169,7 +172,7 @@ namespace Facul
             this.toolStripSeparator2});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(554, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(570, 25);
             this.toolStrip2.TabIndex = 8;
             this.toolStrip2.Text = "toolStrip2";
             this.toolStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip2_ItemClicked);
@@ -189,24 +192,32 @@ namespace Facul
             // 
             // tbpCadastro
             // 
-            this.tbpCadastro.Controls.Add(this.btnDeletar);
-            this.tbpCadastro.Controls.Add(this.btnAlterar);
-            this.tbpCadastro.Controls.Add(this.btnGravar);
+            this.tbpCadastro.Controls.Add(this.panel1);
             this.tbpCadastro.Controls.Add(this.pnlComandos);
             this.tbpCadastro.Location = new System.Drawing.Point(4, 24);
             this.tbpCadastro.Name = "tbpCadastro";
             this.tbpCadastro.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpCadastro.Size = new System.Drawing.Size(560, 150);
+            this.tbpCadastro.Size = new System.Drawing.Size(576, 212);
             this.tbpCadastro.TabIndex = 2;
             this.tbpCadastro.Text = "Cadastro";
             this.tbpCadastro.UseVisualStyleBackColor = true;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnDeletar);
+            this.panel1.Controls.Add(this.btnAlterar);
+            this.panel1.Controls.Add(this.btnGravar);
+            this.panel1.Location = new System.Drawing.Point(3, 123);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(570, 28);
+            this.panel1.TabIndex = 4;
+            // 
             // btnDeletar
             // 
             this.btnDeletar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDeletar.Location = new System.Drawing.Point(157, 123);
+            this.btnDeletar.Location = new System.Drawing.Point(154, 0);
             this.btnDeletar.Name = "btnDeletar";
-            this.btnDeletar.Size = new System.Drawing.Size(238, 24);
+            this.btnDeletar.Size = new System.Drawing.Size(254, 28);
             this.btnDeletar.TabIndex = 9;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
@@ -215,9 +226,9 @@ namespace Facul
             // btnAlterar
             // 
             this.btnAlterar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnAlterar.Location = new System.Drawing.Point(395, 123);
+            this.btnAlterar.Location = new System.Drawing.Point(408, 0);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(162, 24);
+            this.btnAlterar.Size = new System.Drawing.Size(162, 28);
             this.btnAlterar.TabIndex = 10;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
@@ -227,9 +238,9 @@ namespace Facul
             // btnGravar
             // 
             this.btnGravar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnGravar.Location = new System.Drawing.Point(3, 123);
+            this.btnGravar.Location = new System.Drawing.Point(0, 0);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(154, 24);
+            this.btnGravar.Size = new System.Drawing.Size(154, 28);
             this.btnGravar.TabIndex = 8;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -248,7 +259,7 @@ namespace Facul
             this.pnlComandos.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComandos.Location = new System.Drawing.Point(3, 3);
             this.pnlComandos.Name = "pnlComandos";
-            this.pnlComandos.Size = new System.Drawing.Size(554, 120);
+            this.pnlComandos.Size = new System.Drawing.Size(570, 120);
             this.pnlComandos.TabIndex = 3;
             // 
             // lblQuant
@@ -265,7 +276,7 @@ namespace Facul
             this.txtQuant.Location = new System.Drawing.Point(211, 28);
             this.txtQuant.Name = "txtQuant";
             this.txtQuant.Size = new System.Drawing.Size(113, 23);
-            this.txtQuant.TabIndex = 7;
+            this.txtQuant.TabIndex = 2;
             // 
             // lblObs
             // 
@@ -298,8 +309,8 @@ namespace Facul
             // 
             this.txtObs.Location = new System.Drawing.Point(5, 71);
             this.txtObs.Name = "txtObs";
-            this.txtObs.Size = new System.Drawing.Size(519, 23);
-            this.txtObs.TabIndex = 2;
+            this.txtObs.Size = new System.Drawing.Size(560, 23);
+            this.txtObs.TabIndex = 3;
             // 
             // txtNome
             // 
@@ -320,9 +331,11 @@ namespace Facul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 200);
+            this.ClientSize = new System.Drawing.Size(584, 262);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(600, 300);
             this.Name = "frmProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "..:: Produto ::..";
@@ -336,6 +349,7 @@ namespace Facul
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
             this.tbpCadastro.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.pnlComandos.ResumeLayout(false);
             this.pnlComandos.PerformLayout();
             this.ResumeLayout(false);
@@ -367,6 +381,7 @@ namespace Facul
         private System.Windows.Forms.TextBox txtObs;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewButtonColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDes;

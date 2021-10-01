@@ -35,10 +35,6 @@ namespace Facul
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pnlTabela = new System.Windows.Forms.Panel();
             this.grdEstoques = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.clmNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmObs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnPesquisar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -54,6 +50,11 @@ namespace Facul
             this.txtObs = new System.Windows.Forms.TextBox();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.ID = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.clmNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmObs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAtivo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1.SuspendLayout();
             this.tbpConsulta.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,6 +63,7 @@ namespace Facul
             this.toolStrip2.SuspendLayout();
             this.tbpCadastro.SuspendLayout();
             this.pnlComandos.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -87,7 +89,7 @@ namespace Facul
             this.tbpConsulta.Location = new System.Drawing.Point(0, 0);
             this.tbpConsulta.Name = "tbpConsulta";
             this.tbpConsulta.SelectedIndex = 0;
-            this.tbpConsulta.Size = new System.Drawing.Size(543, 179);
+            this.tbpConsulta.Size = new System.Drawing.Size(584, 240);
             this.tbpConsulta.TabIndex = 8;
             // 
             // tabPage1
@@ -130,36 +132,6 @@ namespace Facul
             this.grdEstoques.TabIndex = 0;
             this.grdEstoques.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdEstoques_CellContentClick);
             // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // clmNome
-            // 
-            this.clmNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.clmNome.HeaderText = "Nome";
-            this.clmNome.Name = "clmNome";
-            this.clmNome.ReadOnly = true;
-            this.clmNome.Width = 65;
-            // 
-            // clmObs
-            // 
-            this.clmObs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.clmObs.HeaderText = "Observação";
-            this.clmObs.Name = "clmObs";
-            this.clmObs.ReadOnly = true;
-            this.clmObs.Width = 94;
-            // 
-            // clmAtivo
-            // 
-            this.clmAtivo.HeaderText = "Ativo";
-            this.clmAtivo.Name = "clmAtivo";
-            this.clmAtivo.ReadOnly = true;
-            // 
             // toolStrip2
             // 
             this.toolStrip2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
@@ -188,14 +160,12 @@ namespace Facul
             // 
             // tbpCadastro
             // 
-            this.tbpCadastro.Controls.Add(this.btnDeletar);
-            this.tbpCadastro.Controls.Add(this.btnAlterar);
-            this.tbpCadastro.Controls.Add(this.btnGravar);
+            this.tbpCadastro.Controls.Add(this.panel1);
             this.tbpCadastro.Controls.Add(this.pnlComandos);
             this.tbpCadastro.Location = new System.Drawing.Point(4, 24);
             this.tbpCadastro.Name = "tbpCadastro";
             this.tbpCadastro.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpCadastro.Size = new System.Drawing.Size(535, 151);
+            this.tbpCadastro.Size = new System.Drawing.Size(576, 212);
             this.tbpCadastro.TabIndex = 1;
             this.tbpCadastro.Text = "Cadastro";
             this.tbpCadastro.UseVisualStyleBackColor = true;
@@ -203,9 +173,9 @@ namespace Facul
             // btnDeletar
             // 
             this.btnDeletar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDeletar.Location = new System.Drawing.Point(157, 123);
+            this.btnDeletar.Location = new System.Drawing.Point(166, 0);
             this.btnDeletar.Name = "btnDeletar";
-            this.btnDeletar.Size = new System.Drawing.Size(213, 25);
+            this.btnDeletar.Size = new System.Drawing.Size(227, 26);
             this.btnDeletar.TabIndex = 9;
             this.btnDeletar.Text = "Deletar";
             this.btnDeletar.UseVisualStyleBackColor = true;
@@ -214,9 +184,9 @@ namespace Facul
             // btnAlterar
             // 
             this.btnAlterar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnAlterar.Location = new System.Drawing.Point(370, 123);
+            this.btnAlterar.Location = new System.Drawing.Point(393, 0);
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(162, 25);
+            this.btnAlterar.Size = new System.Drawing.Size(177, 26);
             this.btnAlterar.TabIndex = 10;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
@@ -226,9 +196,9 @@ namespace Facul
             // btnGravar
             // 
             this.btnGravar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnGravar.Location = new System.Drawing.Point(3, 123);
+            this.btnGravar.Location = new System.Drawing.Point(0, 0);
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(154, 25);
+            this.btnGravar.Size = new System.Drawing.Size(166, 26);
             this.btnGravar.TabIndex = 8;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
@@ -246,7 +216,7 @@ namespace Facul
             this.pnlComandos.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComandos.Location = new System.Drawing.Point(3, 3);
             this.pnlComandos.Name = "pnlComandos";
-            this.pnlComandos.Size = new System.Drawing.Size(529, 120);
+            this.pnlComandos.Size = new System.Drawing.Size(570, 120);
             this.pnlComandos.TabIndex = 3;
             // 
             // lblObs
@@ -302,18 +272,63 @@ namespace Facul
             // 
             // txtId
             // 
+            this.txtId.Enabled = false;
             this.txtId.Location = new System.Drawing.Point(12, 28);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(39, 23);
             this.txtId.TabIndex = 0;
             // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ID.Width = 50;
+            // 
+            // clmNome
+            // 
+            this.clmNome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.clmNome.HeaderText = "Nome";
+            this.clmNome.Name = "clmNome";
+            this.clmNome.ReadOnly = true;
+            this.clmNome.Width = 65;
+            // 
+            // clmObs
+            // 
+            this.clmObs.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.clmObs.HeaderText = "Observação";
+            this.clmObs.Name = "clmObs";
+            this.clmObs.ReadOnly = true;
+            this.clmObs.Width = 94;
+            // 
+            // clmAtivo
+            // 
+            this.clmAtivo.HeaderText = "Ativo";
+            this.clmAtivo.Name = "clmAtivo";
+            this.clmAtivo.ReadOnly = true;
+            this.clmAtivo.Width = 50;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnDeletar);
+            this.panel1.Controls.Add(this.btnGravar);
+            this.panel1.Controls.Add(this.btnAlterar);
+            this.panel1.Location = new System.Drawing.Point(3, 125);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(570, 26);
+            this.panel1.TabIndex = 11;
+            // 
             // frmEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 201);
+            this.ClientSize = new System.Drawing.Size(584, 262);
             this.Controls.Add(this.tbpConsulta);
             this.Controls.Add(this.statusStrip1);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(600, 300);
             this.Name = "frmEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "..:: Estoques ::..";
@@ -329,6 +344,7 @@ namespace Facul
             this.tbpCadastro.ResumeLayout(false);
             this.pnlComandos.ResumeLayout(false);
             this.pnlComandos.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -361,5 +377,6 @@ namespace Facul
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNome;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmObs;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clmAtivo;
+        private System.Windows.Forms.Panel panel1;
     }
 }
