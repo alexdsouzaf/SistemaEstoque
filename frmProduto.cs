@@ -35,8 +35,7 @@ namespace Facul
                 linha.Cells[2].Value = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
                 linha.Cells[3].Value = oRetorno.GetInt32(3);
                 //linha.Cells[4].Value = oRetorno.GetInt32(4);
-                linha.Cells[4].Value = oRetorno.GetDateTime(5).ToString();
-                linha.Cells[5].Value = oRetorno.GetString(6);
+                linha.Cells[4].Value = oRetorno.GetString(5);
                 grdProdutos.Rows.Add(linha);
             }
 
