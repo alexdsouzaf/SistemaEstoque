@@ -34,6 +34,9 @@ namespace Facul
                 linha.Cells[1].Value = oRetorno.GetString(1);
                 linha.Cells[2].Value = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
                 linha.Cells[3].Value = oRetorno.GetInt32(3);
+                //linha.Cells[4].Value = oRetorno.GetInt32(4);
+                linha.Cells[4].Value = oRetorno.GetDateTime(5).ToString();
+                linha.Cells[5].Value = oRetorno.GetString(6);
                 grdProdutos.Rows.Add(linha);
             }
 
@@ -44,7 +47,7 @@ namespace Facul
 
             if (ValidaCampos().ToString() != string.Empty)
             {
-                oProduto.gravar(txtNome.Text, txtObs.Text, 0, Convert.ToInt32(txtQuant.Text));
+                oProduto.gravar(txtNome.Text, txtObs.Text, cboEstoque.SelectedItem.ToString(), 0, Convert.ToInt32(txtQuant.Text));
                 LimparCampos();
             }
             else
@@ -73,7 +76,6 @@ namespace Facul
             }
             else
                 MessageBox.Show("Não foi possível gravar o produto por um ou mais motivos:\r\n" + ValidaCampos().ToString());
-
         }
 
         private void LimparCampos()
@@ -81,6 +83,8 @@ namespace Facul
             txtId.Clear();
             txtNome.Clear();
             txtObs.Clear();
+            txtQuant.Clear();
+            cboEstoque.SelectedItem = "";
         }
 
         private void grdProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -90,21 +94,25 @@ namespace Facul
                 string sId = grdProdutos.CurrentCell.Value.ToString();
                 LimparCampos();
 
-                oRetorno = oProduto.consultar(sId); 
+                oRetorno = oProduto.consultar(sId);
 
-                while (oRetorno.Read())
+                if (oRetorno != null)
                 {
+                    while (oRetorno.Read())
+                    {
 
-                    txtId.Text = oRetorno.GetInt32(0).ToString();
-                    txtNome.Text = oRetorno.GetString(1);
-                    txtObs.Text = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
-                    txtQuant.Text = oRetorno.GetInt32(3).ToString();
+                        txtId.Text = oRetorno.GetInt32(0).ToString();
+                        txtNome.Text = oRetorno.GetString(1);
+                        txtObs.Text = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
+                        txtQuant.Text = oRetorno.GetInt32(3).ToString();
+                        cboEstoque.SelectedItem = oRetorno.GetString(5);
 
+                    }
+                    oProduto.Conexao.Close();
+                    btnAlterar.Visible = true;
+                    btnGravar.Visible = false;
+                    tabControl1.SelectedTab = tbpCadastro;
                 }
-                oProduto.Conexao.Close();
-                btnAlterar.Visible = true;
-                btnGravar.Visible = false;
-                tabControl1.SelectedTab = tbpCadastro;
             }
         }
 
@@ -140,6 +148,22 @@ namespace Facul
                 sbMensagem.AppendLine(" - Campo nome deve conter apenas letras.");
 
             return sbMensagem;
+        }
+
+        private void frmProduto_Load(object sender, EventArgs e)
+        {
+            oRetorno = oProduto.ComboEstoque();
+
+            if (oRetorno != null)
+            {
+                while (oRetorno.Read())
+                {
+                    int index = 0;
+                    cboEstoque.Items.Add(oRetorno.GetString(index));
+                    index++;
+                }
+            }
+            oProduto.Conexao.Close();
         }
     }
 }

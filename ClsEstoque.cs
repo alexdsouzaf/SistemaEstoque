@@ -30,13 +30,12 @@ namespace Facul
 
                     conectado.Close();
                 }
-                //return leitor;
+
                 MessageBox.Show("Registro alterado com sucesso!");
             }
             catch (Exception)
             {
-                MessageBox.Show("Algo deu errado");
-                //throw;
+                MessageBox.Show("Algo deu errado");                
             }
         }
 
@@ -63,7 +62,7 @@ namespace Facul
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                throw;
+                return leitor;
             }
 
         }
@@ -88,21 +87,19 @@ namespace Facul
             }
             catch (Exception)
             {
-                MessageBox.Show("Algo deu errado");
-                //throw;
+                MessageBox.Show("Algo deu errado");                
             }
             
-            //return leitor;
         }
 
-        public void gravar(string pNome, string pObs, int pAtivo, int pQtd = 0)
+        public void gravar(string pNome, string pObs,string sEstoqueDes = "",int pAtivo = 0, int pQtd = 0)
         {
             try
             {
                 using (SqlConnection conectado = BancoDados())
                 {
                     
-                    string sCmd = $"INSERT INTO ESTOQUE (NOME,OBS,ATIVO) values ('{pNome}','{pObs}',{pAtivo}) ";
+                    string sCmd = $"INSERT INTO ESTOQUE (NOME,OBS,ATIVO) values ('{pNome}','{pObs}',{pAtivo} ) ";
                     SqlCommand oCmd = new SqlCommand(sCmd);
                     conectado.Open();
                     oCmd.Connection = conectado;

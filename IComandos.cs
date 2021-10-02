@@ -24,7 +24,7 @@ namespace Facul
         /// <param name="pObs"></param>
         /// <param name="pAtivo"></param>
         /// <param name="pQtd"></param>
-        void gravar(string pNome, string pObs, int pAtivo = 0 , int pQtd = 0);
+        void gravar(string pNome, string pObs, string pEstoqueDes = "", int pAtivo = 0 , int pQtd = 0);
 
         /// <summary>
         /// Método para DELETE

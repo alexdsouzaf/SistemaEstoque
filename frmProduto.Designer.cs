@@ -39,6 +39,7 @@ namespace Facul
             this.clmProduto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmQtd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.btnPesquisar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -48,6 +49,8 @@ namespace Facul
             this.btnAlterar = new System.Windows.Forms.Button();
             this.btnGravar = new System.Windows.Forms.Button();
             this.pnlComandos = new System.Windows.Forms.Panel();
+            this.lblComboEstoque = new System.Windows.Forms.Label();
+            this.cboEstoque = new System.Windows.Forms.ComboBox();
             this.lblQuant = new System.Windows.Forms.Label();
             this.txtQuant = new System.Windows.Forms.TextBox();
             this.lblObs = new System.Windows.Forms.Label();
@@ -123,7 +126,8 @@ namespace Facul
             this.ID,
             this.clmProduto,
             this.clmDes,
-            this.clmQtd});
+            this.clmQtd,
+            this.Column2});
             this.grdProdutos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdProdutos.Location = new System.Drawing.Point(0, 25);
             this.grdProdutos.Name = "grdProdutos";
@@ -163,6 +167,15 @@ namespace Facul
             this.clmQtd.HeaderText = "Quantidade";
             this.clmQtd.Name = "clmQtd";
             this.clmQtd.ReadOnly = true;
+            this.clmQtd.Width = 75;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Estoque";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 74;
             // 
             // toolStrip2
             // 
@@ -248,6 +261,8 @@ namespace Facul
             // 
             // pnlComandos
             // 
+            this.pnlComandos.Controls.Add(this.lblComboEstoque);
+            this.pnlComandos.Controls.Add(this.cboEstoque);
             this.pnlComandos.Controls.Add(this.lblQuant);
             this.pnlComandos.Controls.Add(this.txtQuant);
             this.pnlComandos.Controls.Add(this.lblObs);
@@ -261,6 +276,23 @@ namespace Facul
             this.pnlComandos.Name = "pnlComandos";
             this.pnlComandos.Size = new System.Drawing.Size(570, 120);
             this.pnlComandos.TabIndex = 3;
+            // 
+            // lblComboEstoque
+            // 
+            this.lblComboEstoque.AutoSize = true;
+            this.lblComboEstoque.Location = new System.Drawing.Point(330, 10);
+            this.lblComboEstoque.Name = "lblComboEstoque";
+            this.lblComboEstoque.Size = new System.Drawing.Size(49, 15);
+            this.lblComboEstoque.TabIndex = 11;
+            this.lblComboEstoque.Text = "Estoque";
+            // 
+            // cboEstoque
+            // 
+            this.cboEstoque.FormattingEnabled = true;
+            this.cboEstoque.Location = new System.Drawing.Point(330, 28);
+            this.cboEstoque.Name = "cboEstoque";
+            this.cboEstoque.Size = new System.Drawing.Size(121, 23);
+            this.cboEstoque.TabIndex = 10;
             // 
             // lblQuant
             // 
@@ -339,6 +371,7 @@ namespace Facul
             this.Name = "frmProduto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "..:: Produto ::..";
+            this.Load += new System.EventHandler(this.frmProduto_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -382,9 +415,12 @@ namespace Facul
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblComboEstoque;
+        private System.Windows.Forms.ComboBox cboEstoque;
         private System.Windows.Forms.DataGridViewButtonColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProduto;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDes;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmQtd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

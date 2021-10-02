@@ -14,29 +14,38 @@ namespace Facul
     public partial class frmMenu : Form
     {
         clsProduto oProduto = new clsProduto();
+        
+        
         public frmMenu()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            frmEstoque oEstoque = new frmEstoque();
-            oEstoque.Show();
-        }
-
-        private void btnProduto_Click(object sender, EventArgs e)
-        {
-            frmProduto oProduto = new frmProduto();
-            oProduto.Show();
-        }
 
         private void frmMenu_Load(object sender, EventArgs e)
         {
+            grdMenu.Rows.Add("ESTOQUE");
+            grdMenu.Rows.Add("PRODUTO");
+        }
+
+        private void grdMenu_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            string sTela = grdMenu.CurrentCell.Value.ToString();
+
+            if (sTela == "PRODUTO")
+            {
+                frmProduto frmPro = new frmProduto();                
+                frmPro.Show();
+            }
+
+            if (sTela == "ESTOQUE")
+            {
+                frmEstoque frmEst = new frmEstoque();
+                frmEst.Show();                
+            }
 
             
         }
-
-
     }
 }

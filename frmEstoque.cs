@@ -47,7 +47,7 @@ namespace Facul
 
             if (ValidaCampos().ToString() != string.Empty)
             {
-                oEstoque.gravar(txtNome.Text, txtObs.Text, oEstoque.iAtivo(chkAtivo.Checked));
+                oEstoque.gravar(txtNome.Text, txtObs.Text, "",oEstoque.iAtivo(chkAtivo.Checked));
                 LimparCampos();
             }
             else
@@ -95,35 +95,40 @@ namespace Facul
                 string sID = grdEstoques.CurrentCell.Value.ToString();
                 LimparCampos();
 
-                oRetorno = oEstoque.consultar(sID); 
+                oRetorno = oEstoque.consultar(sID);
 
-                while (oRetorno.Read())
+                if (oRetorno != null)
                 {
+                    while (oRetorno.Read())
+                    {
 
-                    txtId.Text = oRetorno.GetInt32(0).ToString();
-                    txtNome.Text = oRetorno.GetString(1);
-                    txtObs.Text = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
+                        txtId.Text = oRetorno.GetInt32(0).ToString();
+                        txtNome.Text = oRetorno.GetString(1);
+                        txtObs.Text = oRetorno.IsDBNull(2) ? string.Empty : oRetorno.GetString(2);
 
-                    if (oRetorno.GetInt32(3) == 1)
-                        chkAtivo.Checked = true;
-                    else
-                        chkAtivo.Checked = false;
+                        if (oRetorno.GetInt32(3) == 1)
+                            chkAtivo.Checked = true;
+                        else
+                            chkAtivo.Checked = false;
 
+                    }
+                    oEstoque.Conexao.Close();
+                    btnAlterar.Visible = true;
+                    btnGravar.Visible = false;
+                    tbpConsulta.SelectedTab = tbpCadastro;
                 }
-                oEstoque.Conexao.Close();                
-                btnAlterar.Visible = true;
-                btnGravar.Visible = false;
-                tbpConsulta.SelectedTab = tbpCadastro;
+
             }
         }
 
         private bool MaskText(string pNome)
         {
-            Regex num = new Regex("[A-Z][a-z]");
-            if (!num.IsMatch(pNome))
-                return false;
-            else
+            //Regex num = new Regex("[A-Za-z]"); //apenas letras
+            Regex texto = new Regex(@" ^[a - zA - Z á] * $"); //letras , espaço , acentos
+            if (!texto.IsMatch(pNome))
                 return true;
+            else
+                return false;
         }
 
         /// <summary>

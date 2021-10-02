@@ -33,9 +33,7 @@ namespace Facul
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                //throw;
             }
-            //throw new NotImplementedException();
         }
 
         public SqlDataReader consultar(string pWhere = "")
@@ -62,9 +60,8 @@ namespace Facul
             catch (Exception)
             {
                 MessageBox.Show("Algo deu errado");
-                throw;
+                return leitor;
             }
-            //throw new notimplementedexception();
         }
 
         public void deletar(string pWhere)
@@ -86,20 +83,24 @@ namespace Facul
             }
             catch (Exception)
             {
-                MessageBox.Show("Algo deu errado");
-                //throw;
+                MessageBox.Show("Algo deu errado");                
             }
-            //throw new NotImplementedException();
         }
 
-        public void gravar(string pNome, string pObs, int pAtivo = 0, int pQtd = 0)
+        public void gravar(string pNome, string pObs, string pEstoqueDes = "", int pAtivo = 0, int pQtd = 0)
         {
+            pEstoqueDes = pEstoqueDes.Trim();
             try
             {
+                SqlDataReader oRetorno = PegaId(pEstoqueDes);
+                int i = 0;
+                if (oRetorno.Read())
+                    i = oRetorno.GetInt32(0);
+
                 using (SqlConnection conectado = BancoDados())
                 {
                     
-                    string sCmd = $"INSERT INTO PRODUTO (NOME,OBS,QUANTIDADE) values ( '{pNome}','{pObs}',{pQtd}) ";
+                    string sCmd = $"INSERT INTO PRODUTO (NOME,OBS,QUANTIDADE, ESTOQUE_ATUAL, DES_ESTOQUE) values ( '{pNome}','{pObs}',{pQtd}, {i}, '{pEstoqueDes}') ";
                     SqlCommand oCmd = new SqlCommand(sCmd);
                     conectado.Open();
                     oCmd.Connection = conectado;
@@ -107,15 +108,37 @@ namespace Facul
 
                     conectado.Close();
                 }
-                MessageBox.Show("Registro alterado com sucesso!");
+                MessageBox.Show("Registro gravado com sucesso!");
 
             }
             catch (Exception)
             {
-                MessageBox.Show("Algo deu errado");
-                //throw;
+                MessageBox.Show("Algo deu errado");                
             }
-            //throw new NotImplementedException();
+        }
+
+        public SqlDataReader ComboEstoque()
+        {
+            try
+            {
+                string sCmd;
+                Conexao = BancoDados();
+
+                sCmd = "SELECT NOME FROM ESTOQUE WHERE ATIVO = 1";
+
+                SqlCommand oCmd = new SqlCommand(sCmd);
+                Conexao.Open();
+                oCmd.Connection = Conexao;
+                oCmd.ExecuteNonQuery();
+                leitor = oCmd.ExecuteReader();
+
+                return leitor;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo deu errado");
+                return leitor;
+            }
         }
 
         public SqlConnection BancoDados()
@@ -125,5 +148,21 @@ namespace Facul
         }
 
         public int iAtivo(bool bCheck){ return 0; }
+
+        private SqlDataReader PegaId(string pDesEstoque)
+        {
+            SqlConnection conectado = BancoDados();
+            
+            string sCmd = $"SELECT ID FROM ESTOQUE WHERE NOME = '{pDesEstoque}'";
+            SqlCommand oCmd = new SqlCommand(sCmd);
+            conectado.Open();
+            oCmd.Connection = conectado;
+            oCmd.ExecuteNonQuery();
+            leitor = oCmd.ExecuteReader();
+            return leitor;
+            //conectado.Close();
+                
+            
+        }
     }
 }
